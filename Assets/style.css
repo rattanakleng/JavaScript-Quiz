@@ -21,7 +21,7 @@
     width: 70%;
     max-width: 100%;
     background: var(--light);
-    color:#0a0f0f;
+    color :var(--dark);
 }
 
 .score-timmer-ctner {
@@ -48,6 +48,12 @@
     border: .02em solid var(--teal);
     border-radius: .2em;
     overflow: hidden;
+}
+
+#progressBarFull {
+background: var(--correct);  
+height: .5em; 
+width: 0%;
 }
 
 .correct {

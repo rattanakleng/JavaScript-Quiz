@@ -35,12 +35,12 @@ var questionCtner = document.querySelector("#question-ctner");
 var questionEl = document.querySelector("#questions");
 var answer = document.querySelector("#answer-list");
 var answerEl = document.querySelector(".answer");
-var timeLeft = 180;
+var timeLeft = 120;
 //console.log(timer);
 var questionCounter = 0;
 var currentScore = 0;
 var newScore;
-
+var progressEl = document.querySelector("#progressBarFull");
 var questionList = [
     {
         question: "When a user views a page containing a JavaScript program, which machine actually executes the script?",
@@ -103,6 +103,8 @@ function startQuiz() {
     console.log(questionList.length);
 
     //answer.style.display = "block";
+    startBtn.style.display = "none";
+
     questionCtner.style.display = "block";
 
     countdown();
@@ -167,6 +169,8 @@ function displayQuestion() {
         choice3Text.innerText = questionList[questionCounter].choice3;
 
         questionCounter++
+
+        progressEl.style.width = `${(questionCounter / questionList.length) * 100}%`
 
         // progressBarFull.style.width = `${(questionCounter/MAX_QUESTIONS) * 100}%`
         answer = questionList[questionCounter - 1].correctAnswer;
@@ -277,9 +281,9 @@ function saveScore() {
     localStorage.setItem("currentScore", currentScore);
     console.log(currentScore);
 
-    // return window.location.assign('end.html');
-    var getHighScore = localStorage.getItem("highScore");
-    console.log("This is new high score" + getHighScore);
+    //FUNCTION direct to end page
+    return window.location.assign('end.html');
+
 };
 
 
