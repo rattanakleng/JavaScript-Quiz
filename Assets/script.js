@@ -37,7 +37,6 @@ var answer = document.querySelector("#answer-list");
 var answerEl = document.querySelector(".answer");
 var timeLeft = 180;
 //console.log(timer);
-var availableQuestions = [];
 var questionCounter = 0;
 var currentScore = 0;
 var newScore;
@@ -96,26 +95,23 @@ var questionList = [
 
 // WHEN I click the 'start button'
 // 'start button'.addEventListener("click".startQuiz);
-startBtn.addEventListener("click", startQuiz, show);
+startBtn.addEventListener("click", startQuiz);
 
 function startQuiz() {
-    // timer.innerText = 80;
-    //console.log(timer.innerText);
-    questionCtner.style.display = "block";
+
+    console.log(questionCounter);
+    console.log(questionList.length);
+
     //answer.style.display = "block";
+    questionCtner.style.display = "block";
 
     countdown();
 
     displayQuestion();
 
     getNewQuestion();
-
-
 };
 
-function show(event) {
-    event.target.style.diaply = "block";
-}
 
 //Countdown time
 // GET Minute and Second format function getTimer()
@@ -149,9 +145,22 @@ var choice1Text = document.querySelector("#choice-1-text");
 var choice2Text = document.querySelector("#choice-2-text");
 var choice3Text = document.querySelector("#choice-3-text");
 
-setInterval(function displayQuestion() {
+//Function reset choice background color
+function resetBackground() {
+    choice1El.style.backgroundColor = "#1f5f5f";
+    choice2El.style.backgroundColor = "#1f5f5f";
+    choice3El.style.backgroundColor = "#1f5f5f";
+};
 
-    if (questionCounter < questionList.length && timeLeft > 0) {
+
+
+function displayQuestion() {
+
+    //Function reset choice background color
+
+    resetBackground()
+
+    if (questionCounter < questionList.length || timeLeft < 0) {
         questionEl.innerText = questionList[questionCounter].question;
         choice1Text.innerText = questionList[questionCounter].choice1;
         choice2Text.innerText = questionList[questionCounter].choice2;
@@ -161,10 +170,11 @@ setInterval(function displayQuestion() {
 
         // progressBarFull.style.width = `${(questionCounter/MAX_QUESTIONS) * 100}%`
         answer = questionList[questionCounter - 1].correctAnswer;
-    } else {
-        saveScore();
     }
-}, 2000);
+    else {
+        saveScore()
+    };
+};
 
 
 // CHECK if answer is correct
@@ -193,43 +203,50 @@ function getNewQuestion() {
     choice1El.addEventListener("click", function () {
 
         if (choice1Dataset === answer) {
+            choice1El.style.backgroundColor = "green";
             currentScore++
-
             scoreEl.innerText = currentScore;
+        } else {
+            choice1El.style.backgroundColor = "red";
         }
         // console.log(choice1Dataset);
         console.log(questionCounter);
         console.log(answer)
-        displayQuestion();
+        setTimeout(displayQuestion, 1000);
     }
     );
 
     choice2El.addEventListener("click", function () {
 
         if (choice2Dataset === answer) {
+            choice2El.style.backgroundColor = "green";
             currentScore++
-            choice1.style.backgroundColor = "yellow";
             scoreEl.innerText = currentScore;
+        } else {
+            choice2El.style.backgroundColor = "red";
         }
 
         console.log(choice2Dataset);
         console.log(questionCounter);
         console.log(answer);
-        displayQuestion();
+        setTimeout(displayQuestion, 1000);
     }
     );
 
     choice3El.addEventListener("click", function () {
 
         if (choice3Dataset === answer) {
+            choice3El.style.backgroundColor = "green";
             currentScore++
             scoreEl.innerText = currentScore;
+        } else {
+            choice3El.style.backgroundColor = "red";
         }
         console.log(choice3Dataset);
         console.log(questionCounter);
         console.log(answer);
 
-        displayQuestion();
+        setTimeout(displayQuestion, 1000);
     }
     );
 };
@@ -243,27 +260,45 @@ function getNewQuestion() {
 //         return window.location.assign('end.html')
 //     }
 // }
+var highScore = 0;
 function saveScore() {
 
     // localStorage.setItem('mostRecentScore', score)
+    // if (currentScore > highScore) {
+    //     highScore === currentScore
+    // };
+
     return window.location.assign('end.html')
 };
 
 
 
-// startQuiz();
-startBtn.addEventListener("click", startQuiz);
+// Save score to local storage;
+// var scoreRecord, myJSON, text, obj;
 
-var myObj, myJSON, text, obj;
+// scoreRecord = { highestScore: "", userScore:[], userName: "" }
+// myJSON = JSON.stringify(scoreRecord);
+// localStorage.setItem("record", scoreRecord)
 
-// Storing data:
-myObj = { name: "Rattanak", age: 20, city: "Seattle" };
-myJSON = JSON.stringify(myObj);
-localStorage.setItem("testJSON", myJSON);
+// // Retrieving data:
+// text = localStorage.getItem("testJSON");
+// obj = JSON.parse(text);
+// document.getElementById("demo").innerHTML = obj.age;
 
-// Retrieving data:
-text = localStorage.getItem("testJSON");
-obj = JSON.parse(text);
-document.getElementById("demo").innerHTML = obj.age;
+
+
+// // Storing data:
+// myObj = { name: "Rattanak", age: 20, city: "Seattle" };
+// myJSON = JSON.stringify(myObj);
+// localStorage.setItem("testJSON", myJSON);
+
+// // Retrieving data:
+// text = localStorage.getItem("testJSON");
+// obj = JSON.parse(text);
+// document.getElementById("demo").innerHTML = obj.age;
+
+
+
+/* CODE FOR END PAGE*/
 
 
