@@ -210,9 +210,9 @@ function getNewQuestion() {
             choice1El.style.backgroundColor = "red";
         }
         // console.log(choice1Dataset);
-        console.log(questionCounter);
-        console.log(answer)
-        setTimeout(displayQuestion, 1000);
+        // console.log(questionCounter);
+        // console.log(answer)
+        setTimeout(displayQuestion, 500);
     }
     );
 
@@ -226,10 +226,10 @@ function getNewQuestion() {
             choice2El.style.backgroundColor = "red";
         }
 
-        console.log(choice2Dataset);
-        console.log(questionCounter);
-        console.log(answer);
-        setTimeout(displayQuestion, 1000);
+        // console.log(choice2Dataset);
+        // console.log(questionCounter);
+        // console.log(answer);
+        setTimeout(displayQuestion, 500);
     }
     );
 
@@ -242,11 +242,11 @@ function getNewQuestion() {
         } else {
             choice3El.style.backgroundColor = "red";
         }
-        console.log(choice3Dataset);
-        console.log(questionCounter);
-        console.log(answer);
+        // console.log(choice3Dataset);
+        // console.log(questionCounter);
+        // console.log(answer);
 
-        setTimeout(displayQuestion, 1000);
+        setTimeout(displayQuestion, 500);
     }
     );
 };
@@ -261,14 +261,25 @@ function getNewQuestion() {
 //     }
 // }
 var highScore = 0;
+
 function saveScore() {
 
-    // localStorage.setItem('mostRecentScore', score)
-    // if (currentScore > highScore) {
-    //     highScore === currentScore
-    // };
+    // localStorage.setItem('highestScore', highScore)
+    var storedHighScore = localStorage.getItem("highScore");
 
-    return window.location.assign('end.html')
+    if (storedHighScore < currentScore) {
+        highScore = currentScore;
+        localStorage.setItem("highScore", highScore);
+        console.log(highScore);
+    }
+
+
+    localStorage.setItem("currentScore", currentScore);
+    console.log(currentScore);
+
+    // return window.location.assign('end.html');
+    var getHighScore = localStorage.getItem("highScore");
+    console.log("This is new high score" + getHighScore);
 };
 
 
@@ -276,7 +287,7 @@ function saveScore() {
 // Save score to local storage;
 // var scoreRecord, myJSON, text, obj;
 
-// scoreRecord = { highestScore: "", userScore:[], userName: "" }
+// scoreRecord = { highestScore: "", userScore:[], userName:[] ] }
 // myJSON = JSON.stringify(scoreRecord);
 // localStorage.setItem("record", scoreRecord)
 
