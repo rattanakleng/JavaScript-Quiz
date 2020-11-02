@@ -43,6 +43,30 @@ var newScore;
 var progressEl = document.querySelector("#progressBarFull");
 var questionList = [
     {
+        question: "Arrays in JavaScript can be used to store ______",
+        choice1: "strings and numbers",
+        choice2: "booleans and other arrays",
+        choice3: "all of the above",
+        correctAnswer: 3,
+    },
+
+    {
+        question: "Commonly used data types DO NOT include:",
+        choice1: "strings",
+        choice2: "alert",
+        choice3: "booleans",
+        correctAnswer: 2,
+    },
+
+    {
+        question: "A very useful tool used during development and debugging for printing content to debuggers is:",
+        choice1: "terminal/bash",
+        choice2: "for loops",
+        choice3: "console.log",
+        correctAnswer: 3,
+    },
+
+    {
         question: "When a user views a page containing a JavaScript program, which machine actually executes the script?",
         choice1: "The User's machine running a Web browser",
         choice2: "The Web server",
@@ -59,11 +83,11 @@ var questionList = [
     },
 
     {
-        question: "__________ JavaScript is also called server-side JavaScript.",
-        choice1: "Microsoft",
-        choice2: "Navigator",
-        choice3: "LiveWire",
-        correctAnswer: 3,
+        question: "The condition in an if/else statement is enclosed within ______",
+        choice1: "quotes",
+        choice2: "parentheses",
+        choice3: "curly brackets",
+        correctAnswer: 2,
     },
 
     {
@@ -80,6 +104,14 @@ var questionList = [
         choice2: "Server-side",
         choice3: "Local",
         correctAnswer: 1,
+    },
+
+    {
+        question: "String values must be enclosed within _____ when being assigned to vairables.",
+        choice1: "commas",
+        choice2: "parentheses",
+        choice3: "quotes",
+        correctAnswer: 3,
     },
 
     {
@@ -125,7 +157,6 @@ function getTimer() {
 }
 
 //convertSecond()
-
 function countdown() {
     setInterval(function () {
         if (timeLeft <= 0) {
@@ -154,15 +185,12 @@ function resetBackground() {
     choice3El.style.backgroundColor = "#1f5f5f";
 };
 
-
-
 function displayQuestion() {
 
     //Function reset choice background color
-
     resetBackground()
 
-    if (questionCounter < questionList.length || timeLeft < 0) {
+    if (questionCounter < questionList.length || timeLeft <= 0) {
         questionEl.innerText = questionList[questionCounter].question;
         choice1Text.innerText = questionList[questionCounter].choice1;
         choice2Text.innerText = questionList[questionCounter].choice2;
@@ -172,7 +200,6 @@ function displayQuestion() {
 
         progressEl.style.width = `${(questionCounter / questionList.length) * 100}%`
 
-        // progressBarFull.style.width = `${(questionCounter/MAX_QUESTIONS) * 100}%`
         answer = questionList[questionCounter - 1].correctAnswer;
     }
     else {
@@ -198,13 +225,13 @@ function updateAnswerValue() {
     answer = questionList[questionCounter].correctAnswer;
 }
 
-// console.log(answer);
-
-// console.log(choice1Dataset);
-console.log(scoreEl.innerText);
-
+//FUNCTION display next question
 function getNewQuestion() {
     choice1El.addEventListener("click", function () {
+
+        if (timeLeft === 0) {
+            saveScore();
+        }
 
         if (choice1Dataset === answer) {
             choice1El.style.backgroundColor = "green";
@@ -213,14 +240,16 @@ function getNewQuestion() {
         } else {
             choice1El.style.backgroundColor = "red";
         }
-        // console.log(choice1Dataset);
-        // console.log(questionCounter);
-        // console.log(answer)
+
         setTimeout(displayQuestion, 500);
     }
     );
 
     choice2El.addEventListener("click", function () {
+
+        if (timeLeft === 0) {
+            saveScore();
+        }
 
         if (choice2Dataset === answer) {
             choice2El.style.backgroundColor = "green";
@@ -229,15 +258,15 @@ function getNewQuestion() {
         } else {
             choice2El.style.backgroundColor = "red";
         }
-
-        // console.log(choice2Dataset);
-        // console.log(questionCounter);
-        // console.log(answer);
         setTimeout(displayQuestion, 500);
     }
     );
 
     choice3El.addEventListener("click", function () {
+
+        if (timeLeft === 0) {
+            saveScore();
+        }
 
         if (choice3Dataset === answer) {
             choice3El.style.backgroundColor = "green";
@@ -246,24 +275,12 @@ function getNewQuestion() {
         } else {
             choice3El.style.backgroundColor = "red";
         }
-        // console.log(choice3Dataset);
-        // console.log(questionCounter);
-        // console.log(answer);
 
         setTimeout(displayQuestion, 500);
     }
     );
 };
 
-
-// Function save score and submit user record
-
-// function saveScore() {
-//     if (questionCounter === questionList.length || timeLeft === 0) {
-//         //localStorage.setItem('mostRecentScore', score)
-//         return window.location.assign('end.html')
-//     }
-// }
 var highScore = 0;
 
 function saveScore() {
@@ -277,43 +294,14 @@ function saveScore() {
         console.log(highScore);
     }
 
-
     localStorage.setItem("currentScore", currentScore);
     console.log(currentScore);
 
     //FUNCTION direct to end page
     return window.location.assign('end.html');
-
 };
 
 
 
-// Save score to local storage;
-// var scoreRecord, myJSON, text, obj;
-
-// scoreRecord = { highestScore: "", userScore:[], userName:[] ] }
-// myJSON = JSON.stringify(scoreRecord);
-// localStorage.setItem("record", scoreRecord)
-
-// // Retrieving data:
-// text = localStorage.getItem("testJSON");
-// obj = JSON.parse(text);
-// document.getElementById("demo").innerHTML = obj.age;
-
-
-
-// // Storing data:
-// myObj = { name: "Rattanak", age: 20, city: "Seattle" };
-// myJSON = JSON.stringify(myObj);
-// localStorage.setItem("testJSON", myJSON);
-
-// // Retrieving data:
-// text = localStorage.getItem("testJSON");
-// obj = JSON.parse(text);
-// document.getElementById("demo").innerHTML = obj.age;
-
-
-
-/* CODE FOR END PAGE*/
 
 
