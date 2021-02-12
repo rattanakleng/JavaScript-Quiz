@@ -4,7 +4,7 @@ The app is created for user(s) to take a timed quiz on JavaScript fundamental th
 
 
 ## Link for live app
-https://rattanakleng.github.io/Timed-Quiz-App/.
+ https://rattanakleng.github.io/JavaScript-Quiz/.
 
 
 ## How to use the app
