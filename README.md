@@ -21,13 +21,18 @@ The app is created for user(s) to take a timed quiz on JavaScript fundamental th
 # App layout 
 
 ## Start page layout
-![Start page layout image](./Assets/ReadmeImg/start_page.png)
+![start_page](https://user-images.githubusercontent.com/29310963/107843650-ee3b3b00-6d81-11eb-9fa4-341b2257f5aa.PNG)
 
 ## During quiz page layout
-![Start page layout image](./Assets/ReadmeImg/during_quiz.png)
+![during_quiz](https://user-images.githubusercontent.com/29310963/107843645-e7142d00-6d81-11eb-840b-feac91551704.PNG)
 
 ## End quiz page layout
-![Start page layout image](./Assets/ReadmeImg/end_page.png)
+![end_page](https://user-images.githubusercontent.com/29310963/107843646-ea0f1d80-6d81-11eb-9b8b-686c4d337a31.PNG)
+
+
+
+
+
 
 
 
